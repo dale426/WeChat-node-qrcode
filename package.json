@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "fs": "^0.0.1-security",
+    "request": "^2.88.0"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
