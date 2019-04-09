@@ -15,14 +15,15 @@ router.get('/', function (req, res) {
     res.send('Birds home page')
 })
 // define the about route
-router.get('/about', function (req, res) {
-    res.send('About birds')
+router.get('/wechat-code', function (req, res) {
+    res.render('home')
 })
 
 
 router.get('/qrcode', function (req, res) {
+    var params = req.query || {}
     try {
-        createQrCode.create().then(response => {
+        createQrCode.create(params).then(response => {
             response.pipe(res)
 
 

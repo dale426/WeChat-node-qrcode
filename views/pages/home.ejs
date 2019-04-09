@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="public/css/home.css">
+	<%- include('common/head'); %>
+	<title>二维码生成</title>
+</head>
+
+<body>
+	<div id="vue_root" class="qr-rooe">
+		<h1 class=qr-title>小程序来源二维码生成</h1>
+		<el-form :model="form" :rules="rules" ref="ruleForm" inline class="qr-form" label-width="140px">
+			<h3>#小程序密钥</h3>
+			<p class="qr-sub_title">请登录小程序后台获取</p>
+			<el-card>
+				<el-form-item label="小程序appId" prop="appId">
+					<el-input v-model="form.appId" placeholder="请输入18位appid"></el-input>
+				</el-form-item>
+				<el-form-item label="小程序appSecret" prop="appSecret">
+					<el-input v-model="form.appSecret" placeholder="请输入32位appSecret"></el-input>
+				</el-form-item>
+			</el-card>
+
+
+			<h3>#二维码生成标识</h3>
+			<el-card>
+				<el-form-item label="二维码标识code" prop="sourceCode">
+					<el-input v-model="form.sourceCode" placeholder="比如：1001"></el-input>
+				</el-form-item>
+				<el-form-item label="二维码标识描述" prop="source">
+					<el-input v-model="form.source" placeholder="比如: 百度渠道二维码"></el-input>
+				</el-form-item>
+				<div class="btn">
+					<el-button type="primary" @click="dowmLoadImg">生成二维码</el-button>
+				</div>
+			</el-card>
+		</el-form>
+		<p class="by">Power by <a href="https://github.com/dale426">Lee</a></p>
+	</div>
+</body>
+<%-include("./common/require.ejs",{r_data:[
+  "/public/js/home.js"
+]})%>
+
+</html>

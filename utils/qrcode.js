@@ -7,14 +7,15 @@ var AccessToken = {
     secret: wx_conf.appSecret
 }
 // 获取小程序凭证-官方文档 https://developers.weixin.qq.com/miniprogram/dev/api/getAccessToken.html
-var wx_gettoken_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=' + AccessToken.grant_type + '&appid=' + AccessToken.appid + '&secret=' + AccessToken.secret;
+var wx_gettoken_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=' + AccessToken.grant_type
 //请求二维码的参数  
 var postData = {
-    path: "pages/index/index?source=baidu&code=bd001",
+    path: "pages/index/index?",
     width: 430
 }
 var createQrcode = {
-    create: function () {
+    create: function (params) {
+        this.params = params
         console.log('fn：create');
         return this.getToken();
     },
@@ -26,7 +27,7 @@ var createQrcode = {
             console.log('进入Promise方法了');
             request({
                 method: 'GET',
-                url: wx_gettoken_url
+                url: wx_gettoken_url + '&appid=' + this.params.appId + '&secret=' + this.params.appSecret
             }, function (err, res, body) {
                 if (res) {
                     resolve(that.getQrcode({
@@ -48,7 +49,9 @@ var createQrcode = {
     getQrcode: function (proData) {
         console.log('fn：getQrcode');
         if (proData.isSuccess) {
-            var resquestBody = JSON.stringify(postData);
+            var path = postData.path + 'source=' + this.params.source + '&code=' + this.params.sourceCode
+
+            var resquestBody = JSON.stringify(Object.assign({}, postData, {path: path}));
             return request({
                 method: 'POST',
                 url: 'https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=' + proData.data.access_token,
