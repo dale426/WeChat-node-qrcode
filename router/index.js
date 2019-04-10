@@ -24,9 +24,12 @@ router.get('/qrcode', function (req, res) {
     var params = req.query || {}
     try {
         createQrCode.create(params).then(response => {
+            /**
+             * response 是可读流、接口返回的
+             * res  是可写流、即将返回的数据
+             * pipe 将流通过管道流入到可写流
+             */
             response.pipe(res)
-
-
             /*            // 创建一个可写流文件
                                var fileWriter=fs.createWriteStream('05.png');
                                // response 为一个可读流
