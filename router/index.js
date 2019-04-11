@@ -46,6 +46,9 @@ router.get('/qrcode', function (req, res) {
             // 2. 可读文件流操作方法
             // 微信第一种方法返回的是 可读可写流
             let fileName = "attachment; filename=" + "code=" + req.query.sourceCode + "_source=" + encodeURI(req.query.source) + ".jpg"
+
+            // 设置文件格式
+            // 解决方法 https://www.designedbyaturtle.co.uk/how-to-force-the-download-of-a-file-with-http-headers-and-php/?tdsourcetag=s_pctim_aiomsg
             res.writeHead(200, {
                 'Content-Type': 'application/octet-stream',
                 'Content-Disposition': (fileName),
