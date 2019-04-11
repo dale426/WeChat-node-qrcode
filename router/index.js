@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var fs = require('fs');
+var path = require('path');
 
 var createQrCode = require('../utils/qrcode.js');
 
@@ -11,8 +12,20 @@ router.use(function timeLog(req, res, next) {
     next()
 })
 // define the home page route
-router.get('/', function (req, res) {
-    res.send('Birds home page')
+router.get('/fs', function (req, res) {
+    fs.readFile(path.join(__dirname, "./wx.jpg"), function(err, originBuffer) {
+        if (err) {
+            console.log('err', err);
+        }    
+        // console.log(Buffer.isBuffer(originBuffer));  // true  图片buffer
+        res.writeHead(200, {
+            'Content-Type': 'application/octet-stream',
+            'Content-Disposition': "attachment; filename=test.jpg"
+        });
+        res.end(Buffer.from(originBuffer))
+        // res.send('Birds home page')
+    })
+
 })
 // define the about route
 router.get('/wechat-code', function (req, res) {
@@ -29,6 +42,14 @@ router.get('/qrcode', function (req, res) {
              * res  是可写流、即将返回的数据
              * pipe 将流通过管道流入到可写流
              */
+
+            // 2. 可读文件流操作方法
+            // 微信第一种方法返回的是 可读可写流
+            let fileName = "attachment; filename=" + "code=" + req.query.sourceCode + "_source=" + encodeURI(req.query.source) + ".jpg"
+            res.writeHead(200, {
+                'Content-Type': 'application/octet-stream',
+                'Content-Disposition': (fileName),
+            });
             response.pipe(res)
             /*            // 创建一个可写流文件
                                var fileWriter=fs.createWriteStream('05.png');

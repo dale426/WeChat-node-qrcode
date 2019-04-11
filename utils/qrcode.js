@@ -52,9 +52,12 @@ var createQrcode = {
             var path = postData.path + 'source=' + this.params.source + '&code=' + this.params.sourceCode
 
             var resquestBody = JSON.stringify(Object.assign({}, postData, {path: path}));
+            // API https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/qr-code.html
+            
             return request({
                 method: 'POST',
-                url: 'https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=' + proData.data.access_token,
+                url: 'https://api.weixin.qq.com/wxa/getwxacode?access_token=' + proData.data.access_token, // 第一种方法
+                // url: 'https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=' + proData.data.access_token,  // 第三种
                 body: resquestBody
             })
             // .pipe(fs.createWriteStream('./public/images/index' + (Math.random() * 100 << 5) + '.png'));//路径自己定义吧  

@@ -35,6 +35,7 @@
 					<el-input v-model="form.source" placeholder="比如: 百度渠道二维码"></el-input>
 				</el-form-item>
 				<div class="btn">
+					<p>共生成的码数量限制为 100,000，请谨慎调用。</p>
 					<el-button type="primary" @click="dowmLoadImg">生成二维码</el-button>
 				</div>
 			</el-card>

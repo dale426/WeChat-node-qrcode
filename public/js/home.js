@@ -4,8 +4,8 @@ new Vue({
     return {
       name: 'hoqu',
       form: {
-        appId: '',
-        appSecret: '',
+        appId: 'wx76c6493364c7f082',
+        appSecret: 'a10fae555e3fc83314d39f2dab8b8fbc',
         source: '',
         sourceCode: ''
       },
