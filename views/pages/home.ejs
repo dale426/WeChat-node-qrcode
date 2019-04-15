@@ -36,11 +36,11 @@
 				</el-form-item>
 				<div class="btn">
 					<p>共生成的码数量限制为 100,000，请谨慎调用。</p>
-					<el-button type="primary" @click="dowmLoadImg">生成二维码</el-button>
+					<el-button :disabled="bttnjur" type="primary" @click="dowmLoadImg">生成二维码</el-button>
 				</div>
 			</el-card>
 		</el-form>
-		<p class="by">Power by <a href="https://github.com/dale426">Lee</a></p>
+		<p class="by">Power by Dale</p>
 	</div>
 </body>
 <%-include("./common/require.ejs",{r_data:[
