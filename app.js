@@ -8,4 +8,4 @@ app.set('views',path.join(__dirname, '/views/pages/'))
 app.use('/public',express.static(path.join(__dirname, '/public')));
 
 app.use('/', router)
-app.listen(5219)
+app.listen(8000)

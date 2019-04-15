@@ -28,7 +28,7 @@ router.get('/fs', function (req, res) {
 
 })
 // define the about route
-router.get('/wechat-code', function (req, res) {
+router.get('/', function (req, res) {
     res.render('home')
 })
 
