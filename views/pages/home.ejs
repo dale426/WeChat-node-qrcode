@@ -15,16 +15,15 @@
 		<h1 class=qr-title>小程序来源二维码生成</h1>
 		<el-form :model="form" :rules="rules" ref="ruleForm" inline class="qr-form" label-width="140px">
 			<h3>#小程序密钥</h3>
-			<p class="qr-sub_title">请登录小程序后台获取</p>
+			<p class="qr-sub_title">【<span style="color:red;">默认是桔伙瓣小程序</span>】其他小程序请登录小程序后台获取</p>
 			<el-card>
 				<el-form-item label="小程序appId" prop="appId">
-					<el-input v-model="form.appId" placeholder="请输入18位appid"></el-input>
+					<el-input v-model="form.appId" type="password" placeholder="请输入18位appid"></el-input>
 				</el-form-item>
 				<el-form-item label="小程序appSecret" prop="appSecret">
-					<el-input v-model="form.appSecret" placeholder="请输入32位appSecret"></el-input>
+					<el-input v-model="form.appSecret" type="password" placeholder="请输入32位appSecret"></el-input>
 				</el-form-item>
 			</el-card>
-
 
 			<h3>#二维码生成标识</h3>
 			<el-card>
